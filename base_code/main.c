@@ -24,11 +24,16 @@ int main() {
     HealthData health_data = {0};
     
     // Tocode: to read the list of the exercises and diets
-    
+    FILE *exercises = NULL;
+    exercises = fopen("exercises.txt", 'r');
+
+    FILE *diets = NULL;
+    diets = fopen("diets.txt", "r");
+
 
     // ToCode: to run the "Healthcare Management Systems" until all calories are used up or the user wants to exit the system
     do {
-    	if ( ){
+    	if (){
             printf("You have consumed all your calories for today! \n");
 		} 
 		else{
