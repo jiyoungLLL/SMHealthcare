@@ -28,18 +28,20 @@ static int diet_list_size = 0;
 
 void loadDiets(const char* DIETFILEPATH) {
     FILE *file = fopen(DIETFILEPATH, "r");
+    char diet[100]; // diets.txt 내용 담을 배열 
+
     if (file == NULL) {
         printf("There is no file for diets! \n");
         return;
     }
 
-    //  // ToCode: to read a list of the diets from the given file
-    // while () {
-    	
-    //     if (diet_list_size >= MAX_DIETS){
-    //     	break;
-	// 	}
-    // }
+     // ToCode: to read a list of the diets from the given file
+    while (fgets(diet, MAX_DIETS, file) != NULL) {
+    	printf("%s", diet); // 내용 출력
+        if (diet_list_size >= MAX_DIETS){
+        	break;
+		}
+    }
     fclose(file);
 }
 

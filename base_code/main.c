@@ -24,26 +24,13 @@ int main(void) {
     HealthData health_data = {0};
     
     // Tocode: to read the list of the exercises and diets
-    FILE *exercises = NULL;
-    exercises = fopen("exercises.txt", "r");
-    char exercise[100]; // exercises.txt 내용 담을 배열 
-    while (fgets(exercise, 100, exercises) != NULL) {
-        printf("%s", exercise); // 내용 출력
-    }
-
-
-    FILE *diets = NULL;
-    diets = fopen("diets.txt", "r");
-    char diet[100]; // diets.txt 내용 담을 배열 
-    while (fgets(diet, 100, diets) != NULL) {
-        printf("%s", diet); // 내용 출력
-    }
-
+    FILE *exercises = fopen(EXERCISEFILEPATH, "r");
+    FILE *diets = fopen(DIETFILEPATH, "r");
 
 
     // // ToCode: to run the "Healthcare Management Systems" until all calories are used up or the user wants to exit the system
     do {
-    	if (){
+    	if (NULL){
             printf("You have consumed all your calories for today! \n");
 		} 
 		else{
@@ -69,7 +56,7 @@ int main(void) {
                 break;
                 
             case 3:
-            	printHealthData(health_data);
+            	// printHealthData(health_data);
                 break;
                 
             case 4:
@@ -82,11 +69,10 @@ int main(void) {
                 printf("[Error] Invalid option. \n");
                 printf("Please try again! \n");
         }
-    } while ( );
+    } while (choice != 4); // 4번 시스템 종료 선택까지 do
 
-
-    fclose(exercises); // exercises 파일 닫기
-    fclose(diets); // diets 파일 닫기
+    fclose(exercises);
+    fclose(diets);
 
     return 0;
 }
