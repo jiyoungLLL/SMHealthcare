@@ -1,0 +1,13 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "C/C++ Runner: Debug Session",
+      "type": "lldb",
+      "request": "launch",
+      "args": [],
+      "cwd": "/Users/limjiyoung/24-2/전자공학도프로그래밍기초/\bfinal-project/base_code",
+      "program": "/Users/limjiyoung/24-2/전자공학도프로그래밍기초/\bfinal-project/base_code/build/Debug/outDebug"
+    }
+  ]
+}

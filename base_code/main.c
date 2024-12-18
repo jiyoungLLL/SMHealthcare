@@ -19,19 +19,29 @@
 
 static int choice;
 
-int main() {
+int main(void) {
 	// To initialize the health data object
     HealthData health_data = {0};
     
     // Tocode: to read the list of the exercises and diets
     FILE *exercises = NULL;
-    exercises = fopen("exercises.txt", 'r');
+    exercises = fopen("exercises.txt", "r");
+    char exercise[100]; // exercises.txt 내용 담을 배열 
+    while (fgets(exercise, 100, exercises) != NULL) {
+        printf("%s", exercise); // 내용 출력
+    }
+
 
     FILE *diets = NULL;
     diets = fopen("diets.txt", "r");
+    char diet[100]; // diets.txt 내용 담을 배열 
+    while (fgets(diet, 100, diets) != NULL) {
+        printf("%s", diet); // 내용 출력
+    }
 
 
-    // ToCode: to run the "Healthcare Management Systems" until all calories are used up or the user wants to exit the system
+
+    // // ToCode: to run the "Healthcare Management Systems" until all calories are used up or the user wants to exit the system
     do {
     	if (){
             printf("You have consumed all your calories for today! \n");
@@ -51,15 +61,15 @@ int main() {
 		// ToCode: to run the sysmtem based on the user's choice
         switch (choice) {
             case 1:
-            	
+            	loadExercises("exercises.txt");
                 break;
                 
             case 2:
-            	
+            	loadDiets("diets.txt");
                 break;
                 
             case 3:
-            	
+            	printHealthData(health_data);
                 break;
                 
             case 4:
@@ -73,6 +83,10 @@ int main() {
                 printf("Please try again! \n");
         }
     } while ( );
+
+
+    fclose(exercises); // exercises 파일 닫기
+    fclose(diets); // diets 파일 닫기
 
     return 0;
 }

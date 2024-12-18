@@ -33,13 +33,13 @@ void loadExercises(const char* EXERCISEFILEPATH) {
         return;
     }
 
-    // ToCode: to read a list of the exercises from the given file
-    while () {
+    // // ToCode: to read a list of the exercises from the given file
+    // while () {
     	
-        if (exercise_list_size >= MAX_EXERCISES){
-        	break;
-		}
-    }
+    //     if (exercise_list_size >= MAX_EXERCISES){
+    //     	break;
+	// 	}
+    // }
 
     fclose(file);
 }

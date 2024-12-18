@@ -33,13 +33,13 @@ void loadDiets(const char* DIETFILEPATH) {
         return;
     }
 
-     // ToCode: to read a list of the diets from the given file
-    while () {
+    //  // ToCode: to read a list of the diets from the given file
+    // while () {
     	
-        if (diet_list_size >= MAX_DIETS){
-        	break;
-		}
-    }
+    //     if (diet_list_size >= MAX_DIETS){
+    //     	break;
+	// 	}
+    // }
     fclose(file);
 }
 
