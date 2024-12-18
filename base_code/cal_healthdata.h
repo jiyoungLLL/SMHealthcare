@@ -33,7 +33,7 @@ typedef struct {
 
 // health data  definition for linked list
 typedef struct {
-Exercise exercises[MAX_EXERCISES];  // exercise history
+    Exercise exercises[MAX_EXERCISES];  // exercise history
     Diet diet[MAX_DIETS];                // diet history
     int exercise_count;                  // number of exercises
     int diet_count;                      // number of diets
