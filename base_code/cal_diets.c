@@ -61,6 +61,7 @@ void loadDiets(const char* DIETFILEPATH) {
 
 void inputDiet(HealthData* health_data) {
     int choice, calories;    
+    int dietIndex = 99999999;  // 기존 식단 index를 저장할 변수
     
     // 하루에 3끼 까지
     // 입력 받을 수 있는 음식의 개수 3개로 제한
@@ -118,15 +119,38 @@ void inputDiet(HealthData* health_data) {
         default:
             return;
     }
+
+    // 기존 배열에 같은 이름의 식단이 있는지 확인
+    for (int i = 0; i < diet_list_size; i++) {
+        if (strstr(diet_list[i].food_name, diet_list[diet_list_size].food_name) != NULL) {
+            // 이미 운동이 있을 때, 해당 운동의 index -> dietIndex
+            dietIndex = i;
+            break;
+        }
+    }
+
+    if (dietIndex != 99999999) {
+        // 이미 식단이 있으면 칼로리만 업데이트
+        diet_list[dietIndex].calories_intake += calories;
+        // health_data diet 칼로리 업데이트
+        health_data->diet[dietIndex].calories_intake += calories;
+    } else {
+        // new 식단 !
+        strcpy(diet_list[diet_list_size].food_name, diet_list[diet_list_size].food_name);
+        diet_list[diet_list_size].calories_intake = calories;
+        
+        // health_data diet 추가
+        strcpy(health_data->diet[diet_list_size].food_name, diet_list[diet_list_size].food_name);
+        health_data->diet[diet_list_size].calories_intake = calories;
+
+        // 식단 개수 증가
+        health_data->diet_count++;
+        // diet_list_size 인덱스 1+
+        diet_list_size++;
+    }
+
     // 먹은 칼로리 업데이트
     health_data->total_calories_intake += calories;
-    // health_data diet 업데이트
-    strcpy(health_data->diet[diet_list_size].food_name, diet_list[diet_list_size].food_name);
-    health_data->diet[diet_list_size].calories_intake = diet_list[diet_list_size].calories_intake;
-    // 식단 개수 증가
-    health_data->diet_count++;
-    // 배열 주소 up
-    diet_list_size++;
 
     // saveData로 health_data.txt 업데이트
     saveData("health_data.txt", health_data);
