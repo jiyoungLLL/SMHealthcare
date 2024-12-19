@@ -8,10 +8,13 @@ Total calories burned: 0 kcal
 
 [Diets]
 rice - 0 kcal
+bread - 0 kcal
+chicken - 0 kcal
+salad - 0 kcal
 pizza - 0 kcal
 tteokbokki - 0 kcal
 Total calories intake: 0 kcal
 
 [Total]
-Basal metabolic rate - 2000 kcal
-The remaining calories - 2000 kcal
+Basal metabolic rate - 1300 kcal
+The remaining calories - 1300 kcal
