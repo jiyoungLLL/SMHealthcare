@@ -51,40 +51,40 @@ void inputExercise(HealthData* health_data) {
         case 1:
             // 이름 저장
             strcpy(exercise_list[exercise_list_size].exercise_name, "walking");
-            // 분당 소모 칼로리 저장
-            exercise_list->calories_burned_per_minute = 4;
             // 사용자한테 입력받은 시간 * 분당 소모 칼로리 = 총 소모 칼로리 계산
             calories = 4 * duration;
+            // 소모 칼로리 계산
+            exercise_list[exercise_list_size].calories_burned_per_minute = calories;
             break;
 
         case 2:
             strcpy(exercise_list[exercise_list_size].exercise_name, "running");
-            exercise_list->calories_burned_per_minute = 11;
             calories = 11 * duration;
+            exercise_list[exercise_list_size].calories_burned_per_minute = calories;
             break;
 
         case 3:
             strcpy(exercise_list[exercise_list_size].exercise_name, "riding");
-            exercise_list->calories_burned_per_minute = 5;
             calories = 5 * duration;
+            exercise_list[exercise_list_size].calories_burned_per_minute = calories;
             break;
 
         case 4:
             strcpy(exercise_list[exercise_list_size].exercise_name, "swimming");
-            exercise_list->calories_burned_per_minute = 12;
             calories = 12 * duration;
+            exercise_list[exercise_list_size].calories_burned_per_minute = calories;
             break;
 
         case 5:
             strcpy(exercise_list[exercise_list_size].exercise_name, "pilates");
-            exercise_list->calories_burned_per_minute = 4;
             calories = 4 * duration;
+            exercise_list[exercise_list_size].calories_burned_per_minute = calories;
             break;
 
         case 6:
             strcpy(exercise_list[exercise_list_size].exercise_name, "yoga");
-            exercise_list->calories_burned_per_minute = 2;
             calories = 2 * duration;
+            exercise_list[exercise_list_size].calories_burned_per_minute = calories;
             break;
 
         default:
