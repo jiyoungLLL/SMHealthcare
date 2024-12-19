@@ -3,8 +3,8 @@ running - 0 kcal
 riding - 0 kcal
 swimming - 0 kcal
 pilates - 0 kcal
-walking - 800 kcal
-Total calories burned: 800 kcal
+walking - 0 kcal
+Total calories burned: 0 kcal
 
 [Diets]
 rice - 0 kcal
@@ -17,4 +17,4 @@ Total calories intake: 0 kcal
 
 [Total]
 Basal metabolic rate - 1300 kcal
-The remaining calories - 500 kcal
+The remaining calories - 0 kcal
