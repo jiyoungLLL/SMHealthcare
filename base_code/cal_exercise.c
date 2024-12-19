@@ -105,71 +105,8 @@ void inputExercise(HealthData* health_data) {
     // health_data에 총 소모된 칼로리 업데이트
     health_data->total_calories_burned += calories;
 
+    // saveData로 health_data.txt 업데이트
     saveData("health_data.txt", health_data);
-    // // 기존 health_data.txt 파일
-    // FILE *health = fopen("health_data.txt", "r");
-    // if (health == NULL) {
-    //     printf("파일이 없습니다.\n");
-    // }
-    // char healthArr[200];  
-
-    // // 임시 파일
-    // FILE *newHealth = fopen("new_health_data.txt", "w");
-    
-    // while (fgets(healthArr, sizeof(healthArr), health)) {        
-    //     char name[MAX_EXERCISE_NAME_LEN];  
-    //     int cal, totalCal, intakeCal, remainingCal;         
-    //     int i = 0;  
-            
-    //     // 운동 이름 name에 저장
-    //     strcpy(name, exercise_list[exercise_list_size-1].exercise_name);
-            
-    //     // healthArr에서 name 찾기
-    //     if (strstr(healthArr, name) != NULL) {  
-    //         // 기존 칼로리 
-    //         while (healthArr[i] != '\0' && !(healthArr[i] >= '0' && healthArr[i] <= '9')) i++;
-    //         cal = 0;
-    //         while (healthArr[i] >= '0' && healthArr[i] <= '9') {
-    //             cal = cal * 10 + (healthArr[i] - '0');
-    //             i++;
-    //         }
-    //         // 더하기
-    //         fprintf(newHealth, "%s - %d kcal\n", name, cal + calories);
-    //         continue;
-    //     }
-        
-        
-    //     // total 칼로리 찾기
-    //     if (strstr(healthArr, "Total calories burned:") != NULL) {
-    //         // 기존 칼로리 (숫자 찾기)
-    //         while (healthArr[i] != '\0' && !(healthArr[i] >= '0' && healthArr[i] <= '9')) i++;
-    //         totalCal = 0;
-    //         while (healthArr[i] >= '0' && healthArr[i] <= '9') {
-    //             totalCal = totalCal * 10  + (healthArr[i] - '0');
-    //             i++;
-    //         }
-    //         fprintf(newHealth, "Total calories burned: %d kcal\n", totalCal + calories);
-    //         continue;
-    //     }
-        
-    //     // 남아있는 칼로리 계산
-    //     if (strstr(healthArr, "The remaining calories - ") != NULL) {
-    //         // The remaining calories - 다음 자리 찾기
-    //         while (healthArr[i] != '\0' && !(healthArr[i] >= '0' && healthArr[i] <= '9')) i++;
-    //         // 칼로리 업데이트
-    //         remainingCal = health_data->total_calories_intake - BASAL_METABOLIC_RATE  - calories;
-    //         fprintf(newHealth, "The remaining calories - %d kcal\n", remainingCal);
-    //         continue;
-    //     }
-    //     // 나머지 
-    //     fprintf(newHealth, "%s", healthArr);
-    // }
-
-    // fclose(health);
-    // fclose(newHealth);
-    
-    // remove("health_data.txt"); // 이전 파일 지우기
-    // rename("new_health_data.txt", "health_data.txt"); // 임시파일 이름 변경
 }
 
 void loadExercises(const char* EXERCISEFILEPATH) {
