@@ -24,29 +24,43 @@
     			3. save the total remaining calrories
 */
 
-// health_data은 exercise와 diet에 모두 저장하는 과정 추가함
-// void saveData(const char* HEALTHFILEPATH, const HealthData* health_data) {
-// 	int i;
-//     FILE* file = fopen(HEALTHFILEPATH, "w");
-//     if (file == NULL) {
-//         printf("There is no file for health data.\n");
-//         return;
-//     }
+// health_data 저장 
+void saveData(const char* HEALTHFILEPATH, const HealthData* health_data) {
+	int i;
+    FILE* file = fopen(HEALTHFILEPATH, "w");
+    if (file == NULL) {
+        printf("There is no file for health data.\n");
+        return;
+    }
 
-//     // ToCode: to save the chosen exercise and total calories burned 
-//     fprintf(file, "[Exercises] \n");
+    // ToCode: to save the chosen exercise and total calories burned 
+    fprintf(file, "[Exercises] \n");
+    // health_data의 운동 데이터 기져와서 저장
+    for (i = 0; i < health_data->exercise_count; i++) {
+        fprintf(file, "%s - %d kcal\n", 
+            health_data->exercises[i].exercise_name,
+            health_data->exercises[i].calories_burned_per_minute);
+    }
     
-    
-//     // ToCode: to save the chosen diet and total calories intake 
-//     fprintf(file, "\n[Diets] \n");
+    // ToCode: to save the chosen diet and total calories intake 
+    fprintf(file, "\n[Diets] \n");
+    // health_data의 식단 데이터 기져와서 저장
+    for (i = 0; i < health_data->diet_count; i++) {
+        fprintf(file, "%s - %d kcal\n",
+            health_data->diet[i].food_name,
+            health_data->diet[i].calories_intake);
+    }
 
+    // ToCode: to save the total remaining calrories
+    fprintf(file, "\n[Total] \n");
+    // health_data의 남은 칼로리 기져와서 저장
+    fprintf(file, "Basal metabolic rate - %d kcal\n", BASAL_METABOLIC_RATE);
+    int remainingCal = health_data->total_calories_intake - BASAL_METABOLIC_RATE - health_data->total_calories_burned;
+    fprintf(file, "The remaining calories - %d kcal\n", remainingCal);
 
-
-//     // ToCode: to save the total remaining calrories
-//     fprintf(file, "\n[Total] \n");
+    fclose(file);
     
-    
-// }
+}
 
 /*
     description : print the history of exercised and diets
