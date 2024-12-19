@@ -56,11 +56,10 @@ int main(void) {
                 break;
                 
             case 3:
-            	// printHealthData(health_data);
+            	printHealthData(&health_data);
                 break;
                 
             case 4:
-            	
     			printf("Exit the system.\n");
     			printf("=======================================================================\n");
                 break;
