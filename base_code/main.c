@@ -49,10 +49,12 @@ int main(void) {
         switch (choice) {
             case 1:
             	loadExercises("exercises.txt");
+                inputExercise(&health_data);
                 break;
                 
             case 2:
             	loadDiets("diets.txt");
+                inputDiet(&health_data);
                 break;
                 
             case 3:

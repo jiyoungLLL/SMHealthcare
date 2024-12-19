@@ -20,7 +20,6 @@
 // To declare the structure of the exercises
 static Exercise exercise_list[MAX_EXERCISES];
 int exercise_list_size = 0;
-HealthData health_data;
 
 /*
     description : to enter the selected exercise and the total calories burned in the health data
@@ -95,7 +94,7 @@ void inputExercise(HealthData* health_data) {
     // health_data에 소모된 칼로리 업데이트
     health_data->total_calories_burned += calories;
     // health_data exercises 업데이트
-    health_data->exercises[exercise_list_size].exercise_name[exercise_list_size] = exercise_list->exercise_name[exercise_list_size];
+    strcpy(health_data->exercises[exercise_list_size].exercise_name, exercise_list->exercise_name);
     health_data->exercises[exercise_list_size].calories_burned_per_minute = exercise_list[exercise_list_size].calories_burned_per_minute;
     // 운동 개수 증가
     health_data->exercise_count++;
@@ -113,7 +112,7 @@ void inputExercise(HealthData* health_data) {
     FILE *newHealth = fopen("new_health_data.txt", "w");
     
     while (fgets(healthArr, sizeof(healthArr), health)) {        
-        char name[20];  
+        char name[MAX_EXERCISE_NAME_LEN];  
         int cal, totalCal, basalCal, remainingCal;         
         int i = 0;  
             
@@ -207,5 +206,4 @@ void loadExercises(const char* EXERCISEFILEPATH) {
     
     fclose(file);
 
-    inputExercise(&health_data);
 }

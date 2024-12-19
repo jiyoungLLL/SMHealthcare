@@ -24,29 +24,29 @@
     			3. save the total remaining calrories
 */
 
-// health_data 저장은 exercise와 diet 모두 저장함
-// void saveData(const char* HEALTHFILEPATH, const HealthData* health_data) {
-// 	int i;
-//     FILE* file = fopen(HEALTHFILEPATH, "w");
-//     if (file == NULL) {
-//         printf("There is no file for health data.\n");
-//         return;
-//     }
+// health_data은 exercise와 diet에 모두 저장하는 과정 추가함
+void saveData(const char* HEALTHFILEPATH, const HealthData* health_data) {
+	int i;
+    FILE* file = fopen(HEALTHFILEPATH, "w");
+    if (file == NULL) {
+        printf("There is no file for health data.\n");
+        return;
+    }
 
-//     // ToCode: to save the chosen exercise and total calories burned 
-//     fprintf(file, "[Exercises] \n");
+    // ToCode: to save the chosen exercise and total calories burned 
+    fprintf(file, "[Exercises] \n");
     
     
-//     // ToCode: to save the chosen diet and total calories intake 
-//     fprintf(file, "\n[Diets] \n");
+    // ToCode: to save the chosen diet and total calories intake 
+    fprintf(file, "\n[Diets] \n");
 
 
 
-//     // ToCode: to save the total remaining calrories
-//     fprintf(file, "\n[Total] \n");
+    // ToCode: to save the total remaining calrories
+    fprintf(file, "\n[Total] \n");
     
     
-// }
+}
 
 /*
     description : print the history of exercised and diets
@@ -59,9 +59,9 @@
 */
 
 void printHealthData(const HealthData* health_data) {
-	int i;
-	
-	// ToCode: to print out the saved history of exercises
+    int i;
+    
+    // ToCode: to print out the saved history of exercises
 	printf("=========================== History of Exercise =======================\n");
   
   
@@ -69,7 +69,12 @@ void printHealthData(const HealthData* health_data) {
 
     // ToCode: to print out the saved history of diets
     printf("============================= History of Diet =========================\n");
-
+    for (i = 0; i < health_data->diet_count; i++) {
+        printf("Food: %s, Calories intake: %d kcal\n",
+            i,
+            health_data->diet[i].food_name,
+            health_data->diet[i].calories_intake);
+    }
 
     printf("=======================================================================\n");
 

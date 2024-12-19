@@ -19,5 +19,6 @@
 #define BASAL_METABOLIC_RATE 1300 	// Basal metabolic rate of adult women
 
 void loadExercises(const char* EXERCISEFILEPATH);
+void inputExercise(HealthData* health_data);
 
 #endif /* cal_exercise_h */

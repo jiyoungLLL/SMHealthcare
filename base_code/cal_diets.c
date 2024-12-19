@@ -20,7 +20,6 @@
 // list of diets 
 static Diet diet_list[MAX_DIETS];
 static int diet_list_size = 0;
-HealthData health_data;
 
 /*
     description : to enter the selected diet and the total calories intake in the health data
@@ -49,37 +48,37 @@ void inputDiet(HealthData* health_data) {
     switch (choice) {
         case 1:
             strcpy(diet_list[diet_list_size].food_name, "rice");
-            diet_list->calories_intake = 600;
+            diet_list[diet_list_size].calories_intake = 600;
             calories = 600;
             break;
         
         case 2:
             strcpy(diet_list[diet_list_size].food_name, "bread");
-            diet_list->calories_intake = 680;
+            diet_list[diet_list_size].calories_intake = 680;
             calories = 680;
             break;
         
         case 3:
             strcpy(diet_list[diet_list_size].food_name, "chicken");
-            diet_list->calories_intake = 925;
+            diet_list[diet_list_size].calories_intake = 925;
             calories = 925;
             break;
 
         case 4:
             strcpy(diet_list[diet_list_size].food_name, "salad");
-            diet_list->calories_intake = 70;
+            diet_list[diet_list_size].calories_intake = 70;
             calories = 70;
             break;
 
         case 5:
             strcpy(diet_list[diet_list_size].food_name, "pizza");
-            diet_list->calories_intake = 900;
+            diet_list[diet_list_size].calories_intake = 900;
             calories = 900;
             break;
 
         case 6:
             strcpy(diet_list[diet_list_size].food_name, "tteokbokki");
-            diet_list->calories_intake = 615;
+            diet_list[diet_list_size].calories_intake = 615;
             calories = 615;
             break;
 
@@ -89,7 +88,7 @@ void inputDiet(HealthData* health_data) {
     // 먹은 칼로리 업데이트
     health_data->total_calories_intake += calories;
     // health_data diet 업데이트
-    health_data->diet[diet_list_size].food_name[diet_list_size] = diet_list[diet_list_size].food_name[diet_list_size];
+    strcpy(health_data->diet[diet_list_size].food_name, diet_list[diet_list_size].food_name);
     health_data->diet[diet_list_size].calories_intake = diet_list[diet_list_size].calories_intake;
     // 식단 개수 증가
     health_data->diet_count++;
@@ -107,7 +106,7 @@ void inputDiet(HealthData* health_data) {
     FILE *newHealth = fopen("new_health_data.txt", "w");   
 
     while (fgets(healthArr, sizeof(healthArr), health)) {        
-        char name[20];  
+        char name[MAX_FOOD_NAME_LEN];  
         int cal, totalCal, basalCal, remainingCal;         
         int i = 0;  
             
@@ -189,7 +188,6 @@ void loadDiets(const char* DIETFILEPATH) {
     }
     fclose(file);
 
-    inputDiet(&health_data);
 }
 
 
