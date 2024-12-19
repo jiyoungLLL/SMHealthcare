@@ -30,7 +30,8 @@ int main(void) {
 
     // // ToCode: to run the "Healthcare Management Systems" until all calories are used up or the user wants to exit the system
     do {
-    	if (NULL){
+        // 종료 조건 : 남은 칼로리 = 0일 때
+    	if ((health_data.total_calories_intake - BASAL_METABOLIC_RATE - health_data.total_calories_burned) != 0){
             printf("You have consumed all your calories for today! \n");
 		} 
 		else{
@@ -70,10 +71,13 @@ int main(void) {
                 printf("[Error] Invalid option. \n");
                 printf("Please try again! \n");
         }
-    } while (choice != 4); // 4번 시스템 종료 선택까지 do
+    // 종료 조건 : 4번을 선택했을 때
+    } while (choice != 4);
+     
 
     fclose(exercises);
     fclose(diets);
+
 
     return 0;
 }
