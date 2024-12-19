@@ -111,7 +111,7 @@ void inputDiet(HealthData* health_data) {
         int cal, totalCal, basalCal, remainingCal;         
         int i = 0;  
             
-        // 운동 이름 name에 저장
+        // 식단 이름 name에 저장
         strcpy(name, diet_list[diet_list_size-1].food_name);
 
         // healthArr에서 name 찾기
