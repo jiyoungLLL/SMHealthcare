@@ -1,9 +1,8 @@
 [Exercises] 
+walking - 400 kcal
 
 [Diets] 
-rice - 600 kcal
-rice - 600 kcal
 
 [Total] 
 Basal metabolic rate - 1300 kcal
-The remaining calories - -100 kcal
+The remaining calories - -1700 kcal
