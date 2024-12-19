@@ -112,84 +112,75 @@ void inputExercise(HealthData* health_data) {
     FILE *health = fopen("health_data.txt", "r");
     if (health == NULL) {
         printf("파일이 없습니다.\n");
-        return;
     }
+    char healthArr[200];  
 
     // 임시 파일
     FILE *newHealth = fopen("new_health_data.txt", "w");
-    char healthArr[200];  
-    int isThereExercise = 0;  // 운동이 이미 있는지
-    int inExercise = 0;  // [Exercises] 안에 내용이 있는지
     
-    while (fgets(healthArr, sizeof(healthArr), health)) {
-        // 줄바꿈 문자 제거
-        int len = 0;
-        while (healthArr[len] != '\n' && healthArr[len] != '\0') len++;
-        healthArr[len] = '\0';
-        
-        // 대괄호 시작?
-        if (healthArr[0] == '[') {
-            // [Exercises]인지 
-            int isExercises = 1;
-            char exercise_str[] = "[Exercises]";
-            for(int i = 0; exercise_str[i] != '\0'; i++) {
-                if(healthArr[i] != exercise_str[i]) {
-                    isExercises = 0;
-                    break;
-                }
-            }
-            // [Exercises]이면 inExercise = 1
-            if(isExercises) inExercise = 1;
-            else inExercise = 0;
+    while (fgets(healthArr, sizeof(healthArr), health)) {        
+        char name[20];  
+        int cal, totalCal, basalCal, remainingCal;         
+        int i = 0;  
             
-            // 운동 추가하기
-            if (!isThereExercise && inExercise == 0) {
-                fprintf(newHealth, "%s - %d kcal\n", 
-                    exercise_list[exercise_list_size-1].exercise_name, calories);
-                isThereExercise = 1;
-            }
-        }
-        
-        // [Exercises] 
-        if (inExercise) {
-            char name[50];  // 운동 이름 배열
-            int cal;        // 기존 칼로리 변수
-            int i = 0, j = 0;
+        // 운동 이름 name에 저장
+        strcpy(name, exercise_list[exercise_list_size-1].exercise_name);
             
-            // 운동 이름 가져오기
-            while (healthArr[i] != '-' && healthArr[i] != '\0') {
-                if (healthArr[i] != ' ') name[j++] = healthArr[i];
+        // healthArr에서 name 찾기
+        if (strstr(healthArr, name) != NULL) {  
+            // 기존 칼로리 
+            while (healthArr[i] != '\0' && !(healthArr[i] >= '0' && healthArr[i] <= '9')) i++;
+            cal = 0;
+            while (healthArr[i] >= '0' && healthArr[i] <= '9') {
+                cal = cal * 10 + (healthArr[i] - '0');
                 i++;
             }
-            name[j] = '\0';
-            
-            // 운동 이름 비교
-            int nameMatching = 1;
-            for(int k = 0; name[k] != '\0' || exercise_list[exercise_list_size-1].exercise_name[k] != '\0'; k++) {
-                if(name[k] != exercise_list[exercise_list_size-1].exercise_name[k]) {
-                    nameMatching = 0;
-                    break;
-                }
-            }
-            
-            // 같은 이름이면 칼로리 더하기
-            if (nameMatching) {
-                // 기존 칼로리 
-                while (healthArr[i] != '\0' && !(healthArr[i] >= '0' && healthArr[i] <= '9')) i++;
-                cal = 0;
-                while (healthArr[i] >= '0' && healthArr[i] <= '9') {
-                    cal = cal * 10 + (healthArr[i] - '0');
-                    i++;
-                }
-                // 더하기
-                fprintf(newHealth, "%s - %d kcal\n", name, cal + calories);
-                isThereExercise = 1;
-                continue;
-            }
+            // 더하기
+            fprintf(newHealth, "%s - %d kcal\n", name, cal + calories);
+            continue;
         }
         
-        // 나머지 줄은 그대로 
-        fprintf(newHealth, "%s\n", healthArr);
+        
+        // total 칼로리 찾기
+        if (strstr(healthArr, "Total calories burned:") != NULL) {
+            // 기존 칼로리 (숫자 찾기)
+            while (healthArr[i] != '\0' && !(healthArr[i] >= '0' && healthArr[i] <= '9')) i++;
+            totalCal = 0;
+            while (healthArr[i] >= '0' && healthArr[i] <= '9') {
+                totalCal = totalCal * 10  + (healthArr[i] - '0');
+                i++;
+            }
+            fprintf(newHealth, "Total calories burned: %d kcal\n", totalCal + calories);
+            continue;
+        }
+
+        // 기초대사량 찾기
+        if (strstr(healthArr, "Basal metabolic rate - ") != NULL) {
+            // 기존 기초대사량
+            while (healthArr[i] != '\0' && !(healthArr[i] >= '0' && healthArr[i] <= '9')) i++;
+            basalCal = 0;
+            while (healthArr[i] >= '0' && healthArr[i] <= '9') {
+                basalCal = basalCal * 10 + (healthArr[i] - '0');
+                i++;
+            }
+            fprintf(newHealth, "Basal metabolic rate - %d kcal\n", basalCal);
+            continue;
+        }
+        
+        // 남아있는 칼로리 계산
+        if (strstr(healthArr, "The remaining calories - ") != NULL) {
+            // 기존 남아있는 칼로리
+            while (healthArr[i] != '\0' && !(healthArr[i] >= '0' && healthArr[i] <= '9')) i++;
+            remainingCal = 0;
+            while (healthArr[i] >= '0' && healthArr[i] <= '9') {
+                remainingCal = remainingCal * 10 + (healthArr[i] - '0');
+                i++;
+            }
+            fprintf(newHealth, "The remaining calories - %d kcal\n", remainingCal - calories);
+            continue;
+        }
+        // 나머지 
+        fprintf(newHealth, "%s", healthArr);
     }
 
     fclose(health);
