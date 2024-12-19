@@ -142,14 +142,11 @@ void inputDiet(HealthData* health_data) {
 
         // 남아있는 칼로리 찾기
         if (strstr(healthArr, "The remaining calories - ") != NULL) {
-            // 기존 남아있는 칼로리
+            // The remaining calories - 다음 자리 찾기
             while (healthArr[i] != '\0' && !(healthArr[i] >= '0' && healthArr[i] <= '9')) i++;
-            remainingCal = 0;
-            while (healthArr[i] >= '0' && healthArr[i] <= '9') {
-                remainingCal = remainingCal * 10 + (healthArr[i] - '0');
-                i++;
-            }
-            fprintf(newHealth, "The remaining calories - %d kcal\n", remainingCal + calories);
+            // 칼로리 업데이트
+            remainingCal = calories - BASAL_METABOLIC_RATE - health_data->total_calories_burned;
+            fprintf(newHealth, "The remaining calories - %d kcal\n", remainingCal);
             continue;
         }
         // 나머지 
