@@ -21,6 +21,35 @@
 static Diet diet_list[MAX_DIETS];
 static int diet_list_size = 0;
 
+
+/*
+    description : read the information in "diets.txt"
+*/
+
+void loadDiets(const char* DIETFILEPATH) {
+    FILE *file = fopen(DIETFILEPATH, "r");
+    char diet[100]; // diets.txt 내용 담을 배열 
+
+    if (file == NULL) {
+        printf("There is no file for diets! \n");
+        return;
+    }
+
+    // 식단 list 출력
+    printf("The list of diets: \n");
+    int diet_num = 1; // 식단 번호 매기기
+    // ToCode: to read a list of the diets from the given file
+    while (fgets(diet, MAX_DIETS, file) != NULL) {
+        printf("%d. %s", diet_num, diet); // 내용 출력
+        if (diet_list_size >= MAX_DIETS) {
+            break;
+        }
+        diet_num++;
+    }
+    fclose(file);
+
+}
+
 /*
     description : to enter the selected diet and the total calories intake in the health data
     input parameters : health_data - data object to which the selected diet and its calories are added 
@@ -43,6 +72,7 @@ void inputDiet(HealthData* health_data) {
             return;
         }
     } else {
+        // 이미 3끼 입력됐으면 입력을 받지 않음 (<-건강한 칼로리 섭취를 위해, 하루에 3끼를 먹음)
         printf("You have already had 3 meals today! \n");
         return;
     }
@@ -101,34 +131,4 @@ void inputDiet(HealthData* health_data) {
     // saveData로 health_data.txt 업데이트
     saveData("health_data.txt", health_data);
 }
-
-/*
-    description : read the information in "diets.txt"
-*/
-
-void loadDiets(const char* DIETFILEPATH) {
-    FILE *file = fopen(DIETFILEPATH, "r");
-    char diet[100]; // diets.txt 내용 담을 배열 
-
-    if (file == NULL) {
-        printf("There is no file for diets! \n");
-        return;
-    }
-
-    // 식단 list 출력
-    printf("The list of diets: \n");
-    int diet_num = 1; // 식단 번호 매기기
-    // ToCode: to read a list of the diets from the given file
-    while (fgets(diet, MAX_DIETS, file) != NULL) {
-        printf("%d. %s", diet_num, diet); // 내용 출력
-        if (diet_list_size >= MAX_DIETS) {
-            break;
-        }
-        diet_num++;
-    }
-    fclose(file);
-
-}
-
-
 
