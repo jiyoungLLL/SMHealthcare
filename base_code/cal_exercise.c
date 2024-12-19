@@ -32,11 +32,12 @@ int exercise_list_size = 0;
 */
 void inputExercise(HealthData* health_data) {
     int choice, duration, calories;
-    int existing_exercise_index = -1;  // 기존 운동 인덱스를 저장할 변수
+    
 
     // ToCode: to enter the exercise to be chosen with exit option
     printf("\nEnter the choice of the exercise(if you want to exit, plz enter a number other than 1-6 to exit): ");
     scanf("%d", &choice);
+    // 운동 번호 1-6 이외 숫자면 종료
     if(choice < 1 || choice > 6) {
         return;
     }
@@ -78,29 +79,7 @@ void inputExercise(HealthData* health_data) {
             return;
     }
 
-    // 기존 배열에 같은 이름의 운동이 있는지 확인
-    for (int i = 0; i < exercise_list_size; i++) {
-        if (strcmp(exercise_list[i].exercise_name, exercise_name) == 0) {
-            existing_exercise_index = i;
-            break;
-        }
-    }
-
-    if (existing_exercise_index != -1) {
-        // 이미 운동이 있을 때 -> 칼로리 업데이트
-        exercise_list[existing_exercise_index].calories_burned_per_minute += calories;
-        health_data->exercises[existing_exercise_index].calories_burned_per_minute += calories;
-    } else {
-        // new 운동 !
-        strcpy(exercise_list[exercise_list_size].exercise_name, exercise_name);
-        exercise_list[exercise_list_size].calories_burned_per_minute = calories;
-        
-        strcpy(health_data->exercises[exercise_list_size].exercise_name, exercise_name);
-        health_data->exercises[exercise_list_size].calories_burned_per_minute = calories;
-        
-        health_data->exercise_count++;
-        exercise_list_size++;
-    }
+    
 
     // health_data에 총 소모된 칼로리 업데이트
     health_data->total_calories_burned += calories;

@@ -1,11 +1,9 @@
 [Exercises] 
-walking - 80 kcal
+walking - 40 kcal
+walking - 40 kcal
 
 [Diets] 
-bread - 680 kcal
-salad - 70 kcal
-salad - 70 kcal
 
 [Total] 
 Basal metabolic rate - 1300 kcal
-The remaining calories - -560 kcal
+The remaining calories - -1380 kcal
