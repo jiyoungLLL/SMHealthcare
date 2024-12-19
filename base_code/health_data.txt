@@ -1,20 +1,20 @@
 [Exercises]
 running - 0 kcal
 riding - 0 kcal
-swimming - 0 kcal
+swimming - 1200 kcal
 pilates - 0 kcal
 walking - 0 kcal
-Total calories burned: 0 kcal
+Total calories burned: 1200 kcal
 
 [Diets]
-rice - 0 kcal
+rice - 600 kcal
 bread - 0 kcal
 chicken - 0 kcal
 salad - 0 kcal
-pizza - 0 kcal
-tteokbokki - 0 kcal
-Total calories intake: 0 kcal
+pizza - 900 kcal
+tteokbokki - 615 kcal
+Total calories intake: 2115 kcal
 
 [Total]
 Basal metabolic rate - 1300 kcal
-The remaining calories - 0 kcal
+The remaining calories - -385 kcal

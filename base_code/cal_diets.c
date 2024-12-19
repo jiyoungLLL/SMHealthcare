@@ -42,6 +42,9 @@ void inputDiet(HealthData* health_data) {
         if (choice < 1 || choice > 6) {
             return;
         }
+    } else {
+        printf("You have already had 3 meals today! \n");
+        return;
     }
 
     // ToCode: to enter the total calories intake in the health data
