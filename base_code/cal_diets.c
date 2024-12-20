@@ -60,21 +60,22 @@ void loadDiets(const char* DIETFILEPATH) {
 */
 
 void inputDiet(HealthData* health_data) {
-    int choice, calories;    
+    int choice, calories, i;    
     int dietIndex = 99999999;  // 기존 식단 index를 저장할 변수
     
     // 하루에 3끼 까지
     // 입력 받을 수 있는 음식의 개수 3개로 제한
-    if (diet_list_size < 3) {
-        // ToCode: to enter the diet to be chosen with exit option
-        printf("\nEnter the choice of the food(if you want to exit, plz enter a number other than 1-6 to exit): ");
-        scanf("%d", &choice);
-        if (choice < 1 || choice > 6) {
-            return;
-        }
-    } else {
+    if (diet_list_size >= 3) {
         // 이미 3끼 입력됐으면 입력을 받지 않음 (<-건강한 칼로리 섭취를 위해, 하루에 3끼를 먹음)
         printf("You have already had 3 meals today! \n");
+        return;
+        
+    } 
+
+    // ToCode: to enter the diet to be chosen with exit option
+    printf("\nEnter the choice of the food(if you want to exit, plz enter a number other than 1-6 to exit): ");
+    scanf("%d", &choice);
+    if (choice < 1 || choice > 6) {
         return;
     }
 
@@ -121,9 +122,9 @@ void inputDiet(HealthData* health_data) {
     }
 
     // 기존 배열에 같은 이름의 식단이 있는지 확인
-    for (int i = 0; i < diet_list_size; i++) {
+    for (i = 0; i < diet_list_size; i++) {
         if (strstr(diet_list[i].food_name, diet_list[diet_list_size].food_name) != NULL) {
-            // 이미 운동이 있을 때, 해당 운동의 index -> dietIndex
+            // 이미 식단이 있을 때, 해당 식단의 index -> dietIndex
             dietIndex = i;
             break;
         }

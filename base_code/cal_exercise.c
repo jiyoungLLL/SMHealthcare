@@ -62,7 +62,7 @@ void loadExercises(const char* EXERCISEFILEPATH) {
     			3. enter the selected exercise and the total calories burned in the health data
 */
 void inputExercise(HealthData* health_data) {
-    int choice, duration, calories;
+    int choice, duration, calories, i;
     int exerciseIndex = 99999999;  // 기존 운동 index를 저장할 변수
 
     // ToCode: to enter the exercise to be chosen with exit option
@@ -110,7 +110,7 @@ void inputExercise(HealthData* health_data) {
     }
 
     // 기존 배열에 같은 이름의 운동이 있는지 확인
-    for (int i = 0; i < exercise_list_size; i++) {
+    for (i = 0; i < exercise_list_size; i++) {
         if (strstr(exercise_list[i].exercise_name, exercise_name) != NULL) {
             // 이미 운동이 있을 때, 해당 운동의 index -> exerciseIndex
             exerciseIndex = i;
