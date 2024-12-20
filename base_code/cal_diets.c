@@ -79,41 +79,38 @@ void inputDiet(HealthData* health_data) {
         return;
     }
 
+    // 식단 이름 저장 배열
+    char diet_name[MAX_FOOD_NAME_LEN];
+
     // ToCode: to enter the total calories intake in the health data
     switch (choice) {
         case 1:
-            strcpy(diet_list[diet_list_size].food_name, "rice");
-            diet_list[diet_list_size].calories_intake = 600;
+            strcpy(diet_name, "rice");
             calories = 600;
             break;
         
         case 2:
-            strcpy(diet_list[diet_list_size].food_name, "bread");
-            diet_list[diet_list_size].calories_intake = 680;
+            strcpy(diet_name, "bread");
             calories = 680;
             break;
         
         case 3:
-            strcpy(diet_list[diet_list_size].food_name, "chicken");
-            diet_list[diet_list_size].calories_intake = 925;
+            strcpy(diet_name, "chicken");
             calories = 925;
             break;
 
         case 4:
-            strcpy(diet_list[diet_list_size].food_name, "salad");
-            diet_list[diet_list_size].calories_intake = 70;
+            strcpy(diet_name, "salad");
             calories = 70;
             break;
 
         case 5:
-            strcpy(diet_list[diet_list_size].food_name, "pizza");
-            diet_list[diet_list_size].calories_intake = 900;
+            strcpy(diet_name, "pizza");
             calories = 900;
             break;
 
         case 6:
-            strcpy(diet_list[diet_list_size].food_name, "tteokbokki");
-            diet_list[diet_list_size].calories_intake = 615;
+            strcpy(diet_name, "tteokbokki");
             calories = 615;
             break;
 
@@ -123,7 +120,7 @@ void inputDiet(HealthData* health_data) {
 
     // 기존 배열에 같은 이름의 식단이 있는지 확인
     for (i = 0; i < diet_list_size; i++) {
-        if (strstr(diet_list[i].food_name, diet_list[diet_list_size].food_name) != NULL) {
+        if (strstr(diet_list[i].food_name, diet_name) != NULL) {
             // 이미 식단이 있을 때, 해당 식단의 index -> dietIndex
             dietIndex = i;
             break;
@@ -137,11 +134,11 @@ void inputDiet(HealthData* health_data) {
         health_data->diet[dietIndex].calories_intake += calories;
     } else {
         // new 식단 !
-        strcpy(diet_list[diet_list_size].food_name, diet_list[diet_list_size].food_name);
+        strcpy(diet_list[diet_list_size].food_name, diet_name);
         diet_list[diet_list_size].calories_intake = calories;
         
         // health_data diet 추가
-        strcpy(health_data->diet[diet_list_size].food_name, diet_list[diet_list_size].food_name);
+        strcpy(health_data->diet[diet_list_size].food_name, diet_name);
         health_data->diet[diet_list_size].calories_intake = calories;
 
         // 식단 개수 증가
